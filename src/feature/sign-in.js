@@ -40,11 +40,10 @@ export default function SignIn() {
   };
 
   return (
-<MenuBar>
+    <div>
+<MenuBar />
     <ThemeProvider theme={theme}>
-
       <Container component="main" maxWidth="xs">
-
         <CssBaseline />
         <Box
           sx={{
@@ -108,11 +107,9 @@ export default function SignIn() {
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
-
       </Container>
-
     </ThemeProvider>
-    </MenuBar>
+    </div>
 
   );
 }

@@ -7,13 +7,14 @@ import Typography from '@mui/material/Typography';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import List from '@mui/material/List';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 //メニューバーの幅
 const drawerWidth = 240;
@@ -67,9 +68,20 @@ const mdTheme = createTheme();
 
 function MenuBarContent () {
     const [open, setOpen] = React.useState(true);
+    const [anchorEl, setAnchorEl] = React.useState(null);
     const toggleDrawer = () => {
       setOpen(!open);
     };
+
+    const handleMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
+    
+      const handleClose = () => {
+        setAnchorEl(null);
+      };
+     
+
     return(
         <ThemeProvider theme={mdTheme}>
         <Box sx={{ display: 'flex' }}>
@@ -99,13 +111,35 @@ function MenuBarContent () {
                 noWrap
                 sx={{ flexGrow: 1 }}
               >
-                Dashboard
+                システム名
               </Typography>
-              <IconButton color="inherit">
-                <Badge badgeContent={10} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
+              <IconButton 
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit">
+                <AccountCircle />
               </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+              </Menu>
             </Toolbar>
           </AppBar>
           <Drawer variant="permanent" open={open}>
@@ -128,6 +162,7 @@ function MenuBarContent () {
               {secondaryListItems}
             </List>
           </Drawer>
+          {/* {children} */}
           <Box
             component="main"
             sx={{
@@ -146,7 +181,6 @@ function MenuBarContent () {
 
     );
 }
-
 
 export default function MenuBar() {
     return <MenuBarContent />;
