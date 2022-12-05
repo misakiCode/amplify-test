@@ -66,7 +66,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 
-function MenuBarContent () {
+function MenuBar (props) {
     const [open, setOpen] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const toggleDrawer = () => {
@@ -162,7 +162,7 @@ function MenuBarContent () {
               {secondaryListItems}
             </List>
           </Drawer>
-          {/* {children} */}
+          {props.children}
           <Box
             component="main"
             sx={{
@@ -182,6 +182,4 @@ function MenuBarContent () {
     );
 }
 
-export default function MenuBar() {
-    return <MenuBarContent />;
-  }
+export default MenuBar;
