@@ -4,7 +4,8 @@ import { alpha, styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+
+import { StyledTableCell,StyledTableRow } from "./table/Tables";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -20,6 +21,8 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import MenuBar from "./MenuBar";
 import EditIcon from "@mui/icons-material/Edit";
+import { useStyles } from "./Button";
+import { Button } from "@mui/material";
 
 function createData(name, calories, fat, carbs, protein) {
   return {
@@ -109,26 +112,6 @@ const headCells = [
     label: "Protein (g)",
   },
 ];
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.primary.light,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
 
 function EnhancedTableHead(props) {
   const {
@@ -256,6 +239,8 @@ export default function Tables() {
   const [orderBy, setOrderBy] = React.useState("calories");
   const [selected, setSelected] = React.useState([]);
 
+  const classes = useStyles();
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -377,7 +362,9 @@ export default function Tables() {
               </TableBody>
             </Table>
           </TableContainer>
+                  <Button variant="contained" className={classes.button}>aaaa</Button>
         </Paper>
+        <Button className={classes.button}>aaaa</Button>
       </Box>
     </MenuBar>
   );

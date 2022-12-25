@@ -7,6 +7,7 @@ import EnhancedTable from './component/Table';
 import Tables from './component/Table';
 import SignIn from './feature/sign-in';
 import TodoList from './feature/todo-list';
+import ZipCloudAPI from './feature/ZipCloudAPI';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/todolist" element={<TodoList/>}/>
       <Route path="/menu" element={<MenuBar />} /> 
       <Route path="/table" element={<Tables/>}/>
+      <Route path="/zipcloud" element={<ZipCloudAPI/>}/>
     </Routes>
     </div>
 
